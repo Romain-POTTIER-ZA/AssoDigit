@@ -1,0 +1,273 @@
+@charset "UTF-8";
+/*---------------------------------------------
+ * VARIABLES & IMPORTS
+ *---------------------------------------------*/
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|");
+/*---------------------------------------------
+ * STYLES GLOBAUX & RESET
+ *---------------------------------------------*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: #333;
+  background-color: whitesmoke;
+}
+
+/*---------------------------------------------
+ * LAYOUT DE L'APPLICATION (QUAND CONNECTÉ)
+ *---------------------------------------------*/
+.app-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 80px 1fr auto;
+  grid-template-areas: "aside nav" "aside main" "aside footer";
+  min-height: 100vh;
+}
+.app-layout nav {
+  grid-area: nav;
+  padding: 0 2rem;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+.app-layout nav .navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.app-layout nav .welcome-message h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+.app-layout nav .welcome-message p {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0;
+}
+.app-layout nav .user-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.app-layout nav .user-info {
+  text-align: right;
+}
+.app-layout nav .user-info .user-name {
+  display: block;
+  font-weight: bold;
+}
+.app-layout nav .user-info .user-email {
+  display: block;
+  font-size: 0.85rem;
+  color: #888;
+}
+.app-layout nav .logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background-color: #f1f1f1;
+  border-radius: 50%;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+}
+.app-layout nav .logout-button:hover {
+  background-color: #8a2be2;
+  color: white;
+  transform: rotate(15deg) scale(1.1);
+  box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+}
+.app-layout aside {
+  grid-area: aside;
+  background: linear-gradient(160deg, #ff8c00, #8a2be2, #411a6f);
+  color: #f4f4f4;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.app-layout aside .logo {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.app-layout aside .menu {
+  list-style: none;
+}
+.app-layout aside .menu a {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  color: #f4f4f4;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+.app-layout aside .menu a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+.app-layout aside .menu a.active {
+  background-color: rgba(255, 255, 255, 0.25);
+  font-weight: bold;
+}
+.app-layout main {
+  grid-area: main;
+  padding: 2rem;
+  overflow-y: auto;
+}
+.app-layout main h1, .app-layout main h2 {
+  margin-bottom: 1.5rem;
+  color: #411a6f;
+}
+.app-layout footer {
+  grid-area: footer;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.9em;
+  color: #777;
+  border-top: 1px solid #e0e0e0;
+  background-color: white;
+}
+
+/*---------------------------------------------
+ * LAYOUT DE LA PAGE DE CONNEXION
+ *---------------------------------------------*/
+.login-layout {
+  background: linear-gradient(135deg, #411a6f, #8a2be2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.login-box .login-logo h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(45deg, #ff8c00, #8a2be2);
+  -webkit-text-fill-color: transparent;
+}
+.login-box .login-title {
+  margin-bottom: 1.5rem;
+  color: #666;
+}
+.login-box .input-group {
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+.login-box .input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+.login-box .input-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.login-box .input-group input:focus {
+  outline: none;
+  border-color: #8a2be2;
+  box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+}
+.login-box .login-button {
+  width: 100%;
+  padding: 0.85rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #ff8c00, #8a2be2);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+.login-box .login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(138, 43, 226, 0.3);
+}
+.login-box .error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/*---------------------------------------------
+ * RESPONSIVE DESIGN
+ *---------------------------------------------*/
+@media (max-width: 768px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas: "nav" "aside" "main" "footer";
+  }
+  .app-layout nav {
+    height: auto;
+    padding: 1rem;
+  }
+  .app-layout nav .navbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .app-layout nav .user-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .app-layout nav .user-info {
+    text-align: left;
+  }
+  .app-layout aside {
+    padding: 1rem;
+  }
+  .app-layout aside .logo {
+    display: none;
+  }
+  .app-layout aside .menu {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .app-layout aside .menu a {
+    margin: 0 0.5rem;
+  }
+}
+@media (max-width: 480px) {
+  .app-layout aside .menu {
+    flex-direction: column;
+    align-items: center;
+  }
+  .app-layout aside .menu a {
+    width: 100%;
+    text-align: center;
+  }
+}/*# sourceMappingURL=main.css.map */
